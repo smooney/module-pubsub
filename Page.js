@@ -5,7 +5,7 @@
 
 */
 
-var ED = ED || {};
+var Base = Base || {};
 
 (function($) {
 	// because javascript
@@ -13,18 +13,18 @@ var ED = ED || {};
 	
 	var settings = {};
 	
-	ED.ContractPage = function( $obj ) { 
+	Base.ContractPage = function( $obj ) { 
 		settings = {
 			
 		};
 		// merge this settings. ED.Settings overrides
 		// settings defined above
-		ED.Settings = $.extend( settings, ED.Settings );
+		Base.Settings = $.extend( settings, Base.Settings );
 		
 		this.$Self = $( $obj );
 	};
 	
-	ED.ContractPage.prototype = {
+	Base.ContractPage.prototype = {
 		init: function() {
 			this.bindDomEvents();
 			

@@ -5,7 +5,7 @@
 
 */
 
-var ED = ED || {};
+var Base = Base || {};
 
 (function($) {
 	// because javascript
@@ -13,7 +13,7 @@ var ED = ED || {};
 	
 	var settings = {};
 	
-	ED.ContractElement = function( $obj ) {
+	Base.ContractElement = function( $obj ) {
 		settings = {
 			checkSelector: '[type="checkbox"]',
 			priceSelector: '[pattern="[0-9]*"]'
@@ -26,28 +26,28 @@ var ED = ED || {};
 		
 		
 		this.$self = $obj;
-		this.$check = $(this.$self).children(ED.Settings.checkSelector);
-		this.$price = $(this.$self).children(ED.Settings.priceSelector);
+		this.$check = $(this.$self).children(Base.Settings.checkSelector);
+		this.$price = $(this.$self).children(Base.Settings.priceSelector);
 		this.init();
 	}
-	ED.ContractElement.prototype = {
+	Base.ContractElement.prototype = {
 		init: function() {
 			console.log('Contract Element Init');
-			console.log(ED.Settings)
+			console.log(Base.Settings)
 			this.bindDomEvents();
 
 		},
 		bindDomEvents: function() {
-			$(this.$self).children(ED.Settings.checkSelector).each(function() {
+			$(this.$self).children(Base.Settings.checkSelector).each(function() {
 				
 				$(this).on('click', function() {
-					$.publish('EDC.UpdateTotal');
+					$.publish('BaseC.UpdateTotal');
 				});
 			});
 			
-			$(this.$self).children(ED.Settings.priceSelector).each(function() {
+			$(this.$self).children(Base.Settings.priceSelector).each(function() {
 				$(this).on('focus blur', function() {
-					$.publish('EDC.UpdateTotal');
+					$.publish('BaseC.UpdateTotal');
 				});	
 			});
 

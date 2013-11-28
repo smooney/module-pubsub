@@ -5,18 +5,18 @@
 
 */
 
-var ED = ED || {};
+var Base = Base || {};
 
 (function($) {
 	// because javascript
 	"use strict";
 	
 	
-	ED.ContractPanel = function( $obj ) { 
+	Base.ContractPanel = function( $obj ) { 
 		this.$Self = $( $obj );
 	};
 	
-	ED.ContractPanel.prototype = {
+	Base.ContractPanel.prototype = {
 		init: function() {
 			this.bindDomEvents();
 			
