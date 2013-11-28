@@ -1,16 +1,86 @@
 /*
-
-
-
-
+ * Element.js
+ * Implementation of a contract Element
 */
 
-var Base = Base || {};
+var Base = window.Base || {};
 
-(function($) {
-	// because javascript
+(function(Base, $) {
 	"use strict";
 	
+	Base.ContractElement = (function(obj, customizaton) {
+		
+		var self,
+			settings = {
+				checkSelector: '[type="checkbox"]',
+				priceSelector: '[pattern="[0-9]*"]'
+			};
+		
+		var init = function(obj, customization) {
+			console.log('element init');
+			
+			// define self object
+			self = obj;
+			
+			// combine customization
+			if (customization !== undefined) {
+				settings = $.extend({}, settings, customization);
+			}
+			
+			// add to domReady stack
+			
+			// register publisher
+			publisher();
+			
+			// register subscriber
+			subscriber();
+			
+			// bind events
+			bindEvents();
+			
+			// update
+			update();
+		},
+		
+		update = function() {
+			console.log('element update');
+		},
+		
+		publisher = function() {
+			/*
+			 * Publish Contract:* Events 
+			*/
+			Base.publish('Contract:Update');
+		},
+		
+		subscriber = function() {
+			
+		},
+		
+		bindEvents = function() {
+			
+		};
+		
+		return {
+			init: init,
+			update: update
+		}
+	}());
+	
+	/*
+	 * @constructor 
+	 */
+	Base.ContractElement.construct = function(obj, customization) {
+		
+	}
+	
+	/*
+	 * initialize 
+	 */
+	Base.ContractElement.construct($('.BaseElement'), {});
+	
+	
+	/*
 	var settings = {};
 	
 	Base.ContractElement = function( $obj ) {
@@ -64,11 +134,7 @@ var Base = Base || {};
 		validate: function() {
 			return (parseInt(this.$price.val(), 10) > 0);
 		}
-	};
+	};*/
 
-	$(function() {
-		
-	});
-
-}(jQuery));
+}(Base, jQuery));
 

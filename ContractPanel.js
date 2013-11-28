@@ -1,17 +1,65 @@
 /*
-
-
-
-
+ * ContractPanel.js
+ * Contract Info Panel. Displays total value of contract
 */
 
-var Base = Base || {};
+var Base = window.Base || {};
 
-(function($) {
+(function(Base) {
 	// because javascript
 	"use strict";
 	
+	Base.ContractPanel = (function() {
+		
+		var init = function() {
+			console.log('panel init');
+			
+			// add to domReady stack
+			
+			// register publisher
+			publisher();
+			
+			// register subscriber
+			subscriber();
+			
+			// bind events
+			bindEvents();
+			
+			// update
+			update();
+		},
+		
+		update = function() {
+			console.log('contract update');
+		},
+		
+		publisher = function() {
+			
+		},
+		
+		subscriber = function() {
+			/*
+			 * Subscribe to Contract:* Events 
+			*/
+			Base.subscribe('Contract:Update', update);
+		},
+		
+		bindEvents = function() {
+			
+		};
+		
+		return {
+			init: init,
+			update: update
+		}	
+	}());
 	
+	/*
+	 * initialize 
+	 */
+	//Base.ContractPanel.init();
+	
+	/*
 	Base.ContractPanel = function( $obj ) { 
 		this.$Self = $( $obj );
 	};
@@ -32,11 +80,7 @@ var Base = Base || {};
 			$.subscribe(name, callback)
 		}
 	};
+	*/
 
-
-	$(function() {
-		
-	});
-
-}(jQuery));
+}(Base));
 
