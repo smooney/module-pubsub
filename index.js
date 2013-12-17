@@ -8,6 +8,12 @@ var Base = window.Base || {};
 $(document).ready(function() {
 	
 	Base.ContractPanel.init();
-	Base.ContractElement.init();
+	
+	//Base.ContractElement.init();
+	// elements
+	$('.BaseElement').each(function() {
+		
+		Base.ContractElement.construct(this, {});
+	});
 	
 });

@@ -29,8 +29,9 @@ var Base = window.Base || {};
 			update();
 		},
 		
-		update = function() {
-			console.log('contract update');
+		update = function(arg) {
+			arg = arg || 'none';
+			console.log('contract update: ' + arg);
 		},
 		
 		publisher = function() {
@@ -41,7 +42,9 @@ var Base = window.Base || {};
 			/*
 			 * Subscribe to Contract:* Events 
 			*/
-			Base.subscribe('Contract:Update', update);
+			Base.subscribe('Contract:Update', function(arg) {
+				update(arg);
+			});
 		},
 		
 		bindEvents = function() {

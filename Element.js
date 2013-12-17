@@ -10,18 +10,20 @@ var Base = window.Base || {};
 	
 	Base.ContractElement = (function(obj, customizaton) {
 		
-		var self,
+		var $self, $check, $price,
 			settings = {
 				checkSelector: '[type="checkbox"]',
 				priceSelector: '[pattern="[0-9]*"]'
 			};
 		
+		/*
+			Core Methods
+		*/
 		var init = function(obj, customization) {
-			console.log('element init');
-			
 			// define self object
-			self = obj;
-			
+			$self = obj;
+			$check = $(this.$self).children(Base.Settings.checkSelector);
+			$price = $(this.$self).children(Base.Settings.priceSelector);
 			// combine customization
 			if (customization !== undefined) {
 				settings = $.extend({}, settings, customization);
@@ -40,9 +42,11 @@ var Base = window.Base || {};
 			
 			// update
 			update();
+			
+			getValue();
 		},
 		
-		update = function() {
+		update = function(arg) {
 			console.log('element update');
 		},
 		
@@ -50,7 +54,6 @@ var Base = window.Base || {};
 			/*
 			 * Publish Contract:* Events 
 			*/
-			Base.publish('Contract:Update');
 		},
 		
 		subscriber = function() {
@@ -60,6 +63,22 @@ var Base = window.Base || {};
 		bindEvents = function() {
 			
 		};
+		
+		/*
+			Module Specific Methods
+		*/
+		
+		var getValue = function() {
+			console.log(self);
+		},
+		
+		publishValue = function() {
+			/*
+			 * Publish Contract:* Events 
+			*/
+			Base.publish('Contract:Update', getValue());
+		};
+		
 		
 		return {
 			init: init,
@@ -71,13 +90,14 @@ var Base = window.Base || {};
 	 * @constructor 
 	 */
 	Base.ContractElement.construct = function(obj, customization) {
-		
+		//console.log('construct element');
+		Base.ContractElement.init(obj, customization);
 	}
 	
 	/*
 	 * initialize 
 	 */
-	Base.ContractElement.construct($('.BaseElement'), {});
+	//Base.ContractElement.construct($('.BaseElement'), {});
 	
 	
 	/*
